@@ -21,7 +21,22 @@ module.exports =
         }
       })
       return
+    }else if (request.url === '/allDogs'){
+      fs.readFile('./utils/allDogs.html', 'utf-8', (err, data)=>{
+        if (err) {
+          response.writeHead(404,{'Content-type':'text/plain'})
+          return response.end('html not found')
+        }else{
+          response.writeHead(200,{'Content-type':'text/html'})
+          return response.end(data)
+        }
+      })
+    }else{
+      response.writeHead(404,{'Content-type':'text/plain'})
+      return response.end('Route not found')
     }
+
     
   })
   .listen(PORT, 'localhost')
+
