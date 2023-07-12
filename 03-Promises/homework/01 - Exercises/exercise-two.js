@@ -28,6 +28,12 @@ function problemA() {
 
   // promise version
   // Tu código acá:
+  exerciseUtils.promisifiedReadFile("poem-two/stanza-01.txt")
+  .then(stanza => {
+    exerciseUtils.blue(stanza)
+    return exerciseUtils.promisifiedReadFile("poem-two/stanza-02.txt")
+  })
+  .then(stanza => exerciseUtils.blue(stanza))
 }
 
 function problemB() {
@@ -47,6 +53,11 @@ function problemB() {
 
   // promise version
   // Tu código acá:
+  filenames.forEach((filename)=>{
+    exerciseUtils.promisifiedReadFile(filename)
+    .then(stanza => exerciseUtils.blue(stanza))
+    .catch(err => exerciseUtils.magenta(new Error(err)))
+  })
 }
 
 // EJERCICIO EXTRA
